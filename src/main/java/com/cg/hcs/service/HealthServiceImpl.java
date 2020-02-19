@@ -16,24 +16,11 @@ public class HealthServiceImpl implements HealthService{
 	{
 	HealthDao healthDao = new HealthDaoImpl();
 	}
-
-	
 	public boolean validateName(String testName) throws HealthException {
 		boolean flag =false;
 		flag=testName.matches("[a-zA-Z]+");
 		return flag;
 		}
-
-	public int ValidatePassword(User user) throws HealthException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int ValidatePhoneNo(User user) throws HealthException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	public boolean addCenter(DiagnosticCenter center) throws HealthException {
 		// TODO Auto-generated method stub
 		return false;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.cg.hcs.bean.DiagnosticCenter;
 import com.cg.hcs.bean.Test;
 import com.cg.hcs.exception.HealthException;
 import com.cg.hcs.service.HealthService;
@@ -13,10 +14,17 @@ public class Client {
 	public static void main(String[] args) {
 		Scanner scanner=new Scanner(System.in);
 		HealthService healthservice=new HealthServiceImpl();
+		
+		
+		DiagnosticCenter dc=new DiagnosticCenter();
+		ArrayList<Test>listofTests =new ArrayList<Test>();
+		
+		Test bloodpressure=new Test("1","blood pressure");
+		Test bloodtest=new Test("2","blood test");
+		Test bloodsugar=new Test("3","blood sugar");
 		int choice=0;
 		Test test=new Test();
-		//List<Test> list = new ArrayList<Test>();
-		ArrayList<Test>listofTests =new ArrayList<Test>();
+		
 		while(choice!=4)
 		{
 		System.out.println("1.Add Center");
@@ -30,18 +38,31 @@ public class Client {
 		case 3:
 		System.out.println("Select center name");
 		scanner.nextLine();
-		System.out.println(listofTests);
+		String centerName= scanner.nextLine();
+		//System.out.println(listofTests.add(test));
+		 System.out.println("Test1="+bloodpressure.getTestName());
+		 System.out.println("Test2="+bloodtest.getTestName());
+		 System.out.println("Test3="+bloodsugar.getTestName());
+		 System.out.println("Enter test name");
 		String TestId=scanner.nextLine();
-		System.out.println("Enter test name");
+		
 		test.setTestName(TestId);
-		try {
-		String sid= healthservice.addTest(test);
-		System.out.println("Test Id = "+sid);
+		dc.setCenterName(centerName);
+		try 
+		{
+		 String sid= healthservice.addTest(test);
+		 System.out.println("Test Id = "+sid);
+		
+		 
+		 
 		}
-		catch (HealthException e) {
+		catch (HealthException e)
+		{
 		System.err.println(e.getMessage());
 		}
 		break;
+		
+		
 		case 4:
 		System.out.println("Enter Employee Id");
 		scanner.nextLine();

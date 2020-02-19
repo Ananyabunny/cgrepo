@@ -8,8 +8,6 @@ import com.cg.hcs.exception.HealthException;
 public interface HealthService {
 	
 	public	String ValidateName(User user) throws HealthException;
-	public	int ValidatePassword(User user) throws HealthException;
-	public	int ValidatePhoneNo(User user) throws HealthException;
 	 public	boolean addCenter(DiagnosticCenter center) throws HealthException;
 	 public	boolean removeCenter(DiagnosticCenter center) throws HealthException;
 		

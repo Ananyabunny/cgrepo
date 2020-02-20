@@ -1,5 +1,6 @@
 package com.cg.hcs.service;
 import java.util.Date;
+import java.util.List;
 
 import com.cg.hcs.bean.DiagnosticCenter;
 import com.cg.hcs.bean.Test;
@@ -17,5 +18,5 @@ public interface HealthService {
 	 public	boolean approveAppointement() throws HealthException;
 	 public	String makeanAppointement(User user,DiagnosticCenter center, Test test,Date datetime) throws HealthException;
 	 public	String register(User user) throws HealthException;
-	 
+	 public List<DiagnosticCenter>displaycenter()throws HealthException;
 }

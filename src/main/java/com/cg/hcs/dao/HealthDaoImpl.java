@@ -15,59 +15,41 @@ import com.cg.hcs.bean.User;
 import com.cg.hcs.exception.HealthException;
 public class HealthDaoImpl implements HealthDao {
 	private Map<String,Test> map;
-	HashMap<String,DiagnosticCenter> centerMap;
-	HashMap<String,Appointment> appointmentMap;
-	ArrayList<Test>listofTests =new ArrayList<Test>();
+private	HashMap<String,DiagnosticCenter> centerMap;
+  private	HashMap<String,Appointment> appointmentMap;
 	public HealthDaoImpl()
 	{
 		centerMap=new HashMap<String,DiagnosticCenter>();
 		appointmentMap=new HashMap<String,Appointment>();
 	}
-	public boolean addCenter(DiagnosticCenter center) throws HealthException {
+	public boolean addCenter(DiagnosticCenter center) throws HealthException 
 		{
-			ArrayList<DiagnosticCenter >list =new  ArrayList<DiagnosticCenter>();
-			DiagnosticCenter center1=new DiagnosticCenter();
-			center1.setCenterName("Apoolo");
-			DiagnosticCenter center2=new DiagnosticCenter();
-			center2.setCenterName("Kims");
-			DiagnosticCenter center3=new DiagnosticCenter();
-			center3.setCenterName("yashoda");
-			list.add(center1);
-			list.add(center2);
-			list.add(center3);
-			
-			
-			
-			Random ObjGenerator =new Random();
-			HashMap<Integer,DiagnosticCenter> dc=new HashMap<Integer,DiagnosticCenter>();
-			for(int count =0;count<5;count++)
+			if(centerMap.containsKey(center.getCenterId()))
 			{
-				int randomNumber=ObjGenerator.nextInt(1000);
-				dc.put(randomNumber,list.get(count));
-				Iterator i2=((List<String>) dc).iterator();
-				while(i2.hasNext());
-				{
-					dc.get(i2);
-				}
+				throw new HealthException("center already exist");
 			}
-
-		Test bloodpressure=new Test();
-		bloodpressure.setTestId("45");
-		bloodpressure.setTestName("blood pressure");
-		Test bloodtest=new Test();
-		bloodtest.setTestId("46");
-		bloodtest.setTestName("blood test");
-		Test bloodsugar=new Test();
-		bloodsugar.setTestId("47");
-		bloodsugar.setTestName("blood sugar");
-		listofTests.add(bloodpressure);
-		listofTests.add(bloodtest);
-		listofTests.add(bloodsugar);
-		center.setListOfTests(listofTests);
-		centerMap.put(center.getCenterId(),center);
-		return false;
+			else
+			{
+				
+				List<Test>list=new ArrayList<Test>();
+				Test test=new Test();
+				test.setTestId("1");
+				test.setTestName("blood test");
+				list.add(test);
+				Test test1=new Test();
+				test1.setTestId("2");
+				test1.setTestName("blood group");
+				list.add(test1);
+				Test test2=new Test();
+				test2.setTestId("3");
+				test2.setTestName("blood pressure");
+				list.add(test2);
+				center.setListOfTests(list);
+				
+				centerMap.put(center.getCenterId(), center);
 		}
-	}
+	return true; 
+		}
 	public boolean removeCenter(DiagnosticCenter center) throws HealthException {
 		
 		return false;
@@ -78,21 +60,17 @@ public class HealthDaoImpl implements HealthDao {
 		DiagnosticCenter center=new DiagnosticCenter();
 		String s1=test.getTestName();
 		for (String i :s) {
-			boolean flag =centerMap.equals(i);
+			boolean flag =s1.equals(i);
+			List<Test>list=center.getListOfTests();
+			//boolean flag1 =	list.contains(test.getTestId());
 			if(flag==true)
 			{
-			List<Test>list=center.getListOfTests();
-			boolean flag1 =	list.contains(test.getTestId());
-			//if(flag==true)
-			//{
-			//throw new HealthException("ID already exist");
-			//}
+			throw new HealthException("test already exist");
+			}
 			//else
 			///{
 			list.add(test);
-			///}
 			}
-		}
 		 /*boolean flag = map.containsKey(test.getTestId()) ;
 		if(flag==true)
 		{
@@ -129,6 +107,12 @@ public class HealthDaoImpl implements HealthDao {
 	public String register(User User) throws HealthException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public List<DiagnosticCenter> displaycenter() throws HealthException {
+		Collection<DiagnosticCenter> col=centerMap.values();
+		List<DiagnosticCenter> list=new ArrayList<DiagnosticCenter>(col);
+		return list;
 	}
 	
 }

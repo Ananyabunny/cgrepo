@@ -14,7 +14,7 @@ public class HealthServiceImpl implements HealthService{
 	private HealthDao healthDao;
 	public HealthServiceImpl()
 	{
-	HealthDao healthDao = new HealthDaoImpl();
+	 healthDao = new HealthDaoImpl();
 	}
 	public boolean validateName(String testName) throws HealthException {
 		boolean flag =false;
@@ -33,7 +33,7 @@ public class HealthServiceImpl implements HealthService{
 	public String addTest(Test test) throws HealthException {
 		String name = test.getTestName();
 		boolean flag = validateName(name);
-		if(flag)
+		if(!flag)
 		{
 		throw new HealthException("Test already present");
 		}
@@ -45,8 +45,10 @@ public class HealthServiceImpl implements HealthService{
 	}
 
 	public boolean removeTest(Test test) throws HealthException {
-		// TODO Auto-generated method stub
-		return false;
+		if(testList.remove(test))
+			return true;
+		else
+			return false;
 	}
 
 	public boolean approveAppointement() throws HealthException {

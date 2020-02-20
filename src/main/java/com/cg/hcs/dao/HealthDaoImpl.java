@@ -3,8 +3,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import com.cg.hcs.bean.Appointment;
 import com.cg.hcs.bean.DiagnosticCenter;
@@ -22,7 +24,33 @@ public class HealthDaoImpl implements HealthDao {
 		appointmentMap=new HashMap<String,Appointment>();
 	}
 	public boolean addCenter(DiagnosticCenter center) throws HealthException {
-		
+		{
+			ArrayList<DiagnosticCenter >list =new  ArrayList<DiagnosticCenter>();
+			DiagnosticCenter center1=new DiagnosticCenter();
+			center1.setCenterName("Apoolo");
+			DiagnosticCenter center2=new DiagnosticCenter();
+			center2.setCenterName("Kims");
+			DiagnosticCenter center3=new DiagnosticCenter();
+			center3.setCenterName("yashoda");
+			list.add(center1);
+			list.add(center2);
+			list.add(center3);
+			
+			
+			
+			Random ObjGenerator =new Random();
+			HashMap<Integer,DiagnosticCenter> dc=new HashMap<Integer,DiagnosticCenter>();
+			for(int count =0;count<5;count++)
+			{
+				int randomNumber=ObjGenerator.nextInt(1000);
+				dc.put(randomNumber,list.get(count));
+				Iterator i2=((List<String>) dc).iterator();
+				while(i2.hasNext());
+				{
+					dc.get(i2);
+				}
+			}
+
 		Test bloodpressure=new Test();
 		bloodpressure.setTestId("45");
 		bloodpressure.setTestName("blood pressure");
@@ -38,6 +66,7 @@ public class HealthDaoImpl implements HealthDao {
 		center.setListOfTests(listofTests);
 		centerMap.put(center.getCenterId(),center);
 		return false;
+		}
 	}
 	public boolean removeCenter(DiagnosticCenter center) throws HealthException {
 		
@@ -54,14 +83,14 @@ public class HealthDaoImpl implements HealthDao {
 			{
 			List<Test>list=center.getListOfTests();
 			boolean flag1 =	list.contains(test.getTestId());
-			if(flag==true)
-			{
-			throw new HealthException("ID already exist");
-			}
-			else
-			{
+			//if(flag==true)
+			//{
+			//throw new HealthException("ID already exist");
+			//}
+			//else
+			///{
 			list.add(test);
-			}
+			///}
 			}
 		}
 		 /*boolean flag = map.containsKey(test.getTestId()) ;

@@ -35,6 +35,7 @@ public class Client {
 		choice = scanner.nextInt();
 		switch(choice)
 		{
+		
 		case 3:
 		System.out.println("Select center name");
 		scanner.nextLine();

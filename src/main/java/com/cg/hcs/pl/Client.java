@@ -81,19 +81,21 @@ public class Client {
 			
 	case 3:
 		scanner.nextLine();
-	System.out.println("Select test name");
-		scanner.nextLine();
+	System.out.println("Select center name");
+		String centerName=scanner.nextLine();
 		//String centerName= scanner.nextLine();
 		//System.out.println(listofTests.add(test));
 		 System.out.println("Enter test name");
 		 String TestName=scanner.nextLine();
 		 test=new Test();
+		 
 		test.setTestName(TestName);
 		
 		try 
 		{
 	
-		 String sid= healthservice.addTest(test);
+		 String sid= healthservice.addTest(centerName,
+				 test);
 	 System.out.println("Test Id = "+sid);
 		
 		}

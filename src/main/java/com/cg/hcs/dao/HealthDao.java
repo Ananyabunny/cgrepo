@@ -10,11 +10,8 @@ import com.cg.hcs.exception.HealthException;
 public interface HealthDao {
 	 public	boolean addCenter(DiagnosticCenter center) throws HealthException;
 	 public	boolean removeCenter(DiagnosticCenter center) throws HealthException;
-	 public	String addTest(Test test) throws HealthException;
+	 public	String addTest(String centerName,Test test) throws HealthException;
 	 public	boolean removeTest(Test test) throws HealthException;
-	 public	boolean approveAppointement() throws HealthException;
-	 public	String makeanAppointement(User user,DiagnosticCenter center, Test test,  Date datetime) throws HealthException;
-	 public	String register(User User) throws HealthException;
 	 public List<DiagnosticCenter>displaycenter()throws HealthException;
 	
 

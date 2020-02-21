@@ -50,7 +50,7 @@ public class HealthServiceImpl implements HealthService{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	public String addTest(Test test) throws HealthException {
+	public String addTest(String centerName,Test test) throws HealthException {
 		String name = test.getTestName();
 		boolean flag = validateName(name);
 		if(!flag)
@@ -60,7 +60,7 @@ public class HealthServiceImpl implements HealthService{
 		Random random = new Random();
 		int id = random.nextInt(100)+1000;
 		test.setTestId(id+"");
-		String sid=healthDao.addTest(test).toString();
+		String sid=healthDao.addTest(centerName,test).toString();
 		return sid;
 	}
 
@@ -78,32 +78,14 @@ public class HealthServiceImpl implements HealthService{
 			return false;
 	}
 
-	public boolean approveAppointement() throws HealthException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public String makeanAppointement(User user, DiagnosticCenter center, Test test, Date datetime)
-			throws HealthException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String register(User user) throws HealthException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public String ValidateName(User user) throws HealthException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	@Override
 	public List<DiagnosticCenter> displaycenter() throws HealthException {
 		
 		return healthDao.displaycenter();
 	}
+	
+	}
 
 	
-}
+
